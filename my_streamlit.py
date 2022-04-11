@@ -24,14 +24,14 @@ def get_UN_data():
 
 
 option = st.sidebar.selectbox(
-    'Silakan pilih:',
+    'Menu:',
     ('Home', 'Persebaran Covid', 'Data Vaksin')
 )
 
 if option == 'Home' or option == '':
-    st.write("""# Halaman Utama""")  # menampilkan halaman utama
+    st.write("""# Dokumentasi Covid-19 Indonesia""")  # menampilkan halaman utama
 elif option == 'Persebaran Covid':
-    st.write("""## Persebaran Covid""")  # menampilkan judul halaman dataframe
+    st.write("""## Peta Persebaran Covid-19 di Indonesia""")  # menampilkan judul halaman dataframe
 
     try:
         ALL_LAYERS = {
@@ -81,7 +81,7 @@ elif option == 'Persebaran Covid':
                               "list_data['lokasi']['lat']"],
                 get_color=[200, 30, 0, 160],
                 get_radius="[list_data['jumlah_kasus']]",
-                radius_scale=0.05,
+                radius_scale=0.25,
             ),
             # "Outbound Flow": pdk.Layer(
             #     "ArcLayer",
@@ -97,7 +97,7 @@ elif option == 'Persebaran Covid':
             #     width_max_pixels=30,
             # ),
         }
-        st.sidebar.markdown('### Map Layers')
+        st.sidebar.markdown('### Peta:')
         selected_layers = [
             layer for layer_name, layer in ALL_LAYERS.items()
             if st.sidebar.checkbox(layer_name, True)]
@@ -105,11 +105,11 @@ elif option == 'Persebaran Covid':
             st.pydeck_chart(pdk.Deck(
                 map_style="mapbox://styles/mapbox/light-v9",
                 initial_view_state={"latitude": -3.6687994,
-                                    "longitude": 119.9740534, "zoom": 3, "pitch": 50},
+                                    "longitude": 119.9740534, "zoom": 3.5, "pitch": 0},
                 layers=selected_layers,
             ))
         else:
-            st.error("Please choose at least one layer above.")
+            st.error("Centang bagian Banyak Kasus untuk melihat peta!")
     except URLError as e:
         st.error("""
             **This demo requires internet access.**
@@ -123,7 +123,7 @@ elif option == 'Persebaran Covid':
     })
     # df  # menampilkan dataframe
 elif option == 'Data Vaksin':
-    st.write("""## Data Vaksin di Indonesia""")  # menampilkan judul halaman
+    st.write("""## Data Vaksinasi di Indonesia""")  # menampilkan judul halaman
 
     # membuat variabel chart data yang berisi data dari dataframe
     # data berupa angka acak yang di-generate menggunakan numpy
@@ -154,7 +154,7 @@ elif option == 'Data Vaksin':
         "legend": {"top": "5%", "left": "center"},
         "series": [
             {
-                "name": "Data Vaksin di Indonesia",
+                "name": "Data Vaksinasi di Indonesia",
                 "type": "pie",
                 "radius": ["40%", "70%"],
                 "avoidLabelOverlap": False,
@@ -211,11 +211,11 @@ elif option == 'Data Vaksin':
     col1, col2 = st.columns(2)
     tgl = parser.parse(lastUpdate).strftime("%d %B %Y %H:%M")
     
-    col1.metric(label="Update",value="",delta=tgl)
-    col2.metric(label="Total Sasaran", value= sasaran +" orang")
+    col1.metric(label="Latest Update:",value="",delta=tgl)
+    col2.metric(label="Total Sasaran:", value= sasaran +" orang")
 
     st_echarts(
-        options=options, height="500px",
+        options=options, height="600px",
     )
     st_echarts(options=options1, height="400px")
 
