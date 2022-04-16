@@ -5,12 +5,5 @@ pydeck==0.7.1
 altair==4.2.0
 requests==2.27.1
 urllib3==1.26.8
-json==3.8.1
-datetime==3.8.0
-parser==2.3.0
-urllib==2.7
-datetime==3.8.0
-dateutil==2.8.1
 streamlit_echarts==0.1.0
 st_echarts==0.1.0
-URLError==2.7.5
