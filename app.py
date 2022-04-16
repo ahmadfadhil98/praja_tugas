@@ -12,7 +12,7 @@ from urllib.error import URLError
 from datetime import datetime
 from dateutil import parser
 
-locale.setlocale(locale.LC_ALL, 'en_US')
+locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
 @st.cache
 def from_data_file(filename):
     url = (
