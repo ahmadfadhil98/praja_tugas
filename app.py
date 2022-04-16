@@ -133,11 +133,13 @@ elif option == 'Data Vaksin':
     # data_json = json.loads(response.read())
 
     # data_json = requests.get(url).json()
-    data = pd.read_json('vaksin.json', orient='index')
+    
+    r = requests.get(url, allow_redirects=True)
+    open('vaksin.json', 'wb').write(r.content)
     # data = pd.DataFrame(data_json.to_json(), index=[0])
     
     # data_json[0]['totalsasaran']
-
+    data = pd.read_json('vaksin.json', orient='index')
     # data.set_index('')
     totalsasaran = data[0]['totalsasaran']
     sasaranvaksinsdmk = data[0]['sasaranvaksinsdmk']
