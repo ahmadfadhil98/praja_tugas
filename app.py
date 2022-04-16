@@ -268,7 +268,7 @@ elif option == 'Persebaran Covid':
             
             data1 = df.loc[countries]
             data = data1[["dirawat", "sembuh", "meninggal"]]
-            st.write("### Gross Agricultural Production ($B)", data.sort_index())
+            st.write("### Tabel Persebaran Covid per Provinsi", data.sort_index())
 
             # data = data.T.reset_index()
             # data = pd.melt(data, id_vars=["index"]).rename(
@@ -367,7 +367,8 @@ elif option == 'Data Rumah Sakit':
             # dfrsbed
             datarsbed = pd.json_normalize(dfrsbed['data']['bedDetail'])
             datarsbed = datarsbed[["stats.title", "stats.bed_available", "stats.bed_empty","stats.queue"]]
-            datarsbed.rename(columns={'stats.title':'Nama','stats.bed_available': 'Ketersediaan', 'stats.bed_empty': 'Kosong', 'stats.queue': 'Antrian'}, inplace=True)
+            datarsbed.set_index('stats.title', inplace=True)
+            datarsbed.rename(columns={'stats.bed_available': 'Ketersediaan', 'stats.bed_empty': 'Kosong', 'stats.queue': 'Antrian'}, inplace=True)
             
     if datars.empty:
         st.error("Data tidak ditemukan")
