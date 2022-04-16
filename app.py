@@ -135,7 +135,9 @@ elif option == 'Data Vaksin':
     # data_json = requests.get(url).json()
     
     r = requests.get(url, allow_redirects=True)
-    open('vaksin.json', 'wb').write(r.content)
+    data_json = r.json()
+    with open('vaksin.json', 'w') as f:
+        json.dump(data_json, f)
     # data = pd.DataFrame(data_json.to_json(), index=[0])
     
     # data_json[0]['totalsasaran']
