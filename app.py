@@ -139,7 +139,7 @@ elif option == 'Data Vaksin':
     # data_json = r.json()
     # with open('vaksin.json', 'w') as f:
     #     json.dump(data_json, f)
-    pathlib.Path('vaksin.json').write_bytes(r.content)
+    # pathlib.Path('vaksin.json').write_bytes(r.content)
     # data = pd.DataFrame(data_json.to_json(), index=[0])
     
     # data_json[0]['totalsasaran']
