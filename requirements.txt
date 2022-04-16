@@ -6,4 +6,3 @@ altair==4.2.0
 requests==2.27.1
 urllib3==1.26.8
 streamlit_echarts==0.1.0
-st_echarts==0.1.0
