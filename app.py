@@ -5,6 +5,7 @@ import pydeck as pdk
 import altair as alt
 import locale
 import requests
+import pathlib
 from urllib.request import urlopen
 import json
 from streamlit_echarts import st_echarts
@@ -134,10 +135,11 @@ elif option == 'Data Vaksin':
 
     # data_json = requests.get(url).json()
     
-    r = requests.get(url, allow_redirects=True)
-    data_json = r.json()
-    with open('vaksin.json', 'w') as f:
-        json.dump(data_json, f)
+    r = requests.get(url)
+    # data_json = r.json()
+    # with open('vaksin.json', 'w') as f:
+    #     json.dump(data_json, f)
+    pathlib.Path('vaksin.json').write_bytes(r.content)
     # data = pd.DataFrame(data_json.to_json(), index=[0])
     
     # data_json[0]['totalsasaran']
