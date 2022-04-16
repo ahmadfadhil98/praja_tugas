@@ -3,7 +3,6 @@ pandas==1.4.2
 numpy==1.22.3
 pydeck==0.7.1
 altair==4.2.0
-locale==1.0.2
 requests==2.27.1
 urllib3==1.26.8
 json==3.8.1
