@@ -126,12 +126,13 @@ elif option == 'Data Vaksin':
     url = "https://vaksincovid19-api.vercel.app/api/vaksin"
 
     # store the response of URL
-    response = urlopen(url)
+    # response = urlopen(url)
 
-    # storing the JSON response
-    # from url in data
-    data_json = json.loads(response.read())
+    # # storing the JSON response
+    # # from url in data
+    # data_json = json.loads(response.read())
 
+    data_json = requests.get(url).json()
     data = pd.DataFrame(data_json, index=[0])
     # data.set_index('')
     totalsasaran =data['totalsasaran'][0]
