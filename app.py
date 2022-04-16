@@ -132,17 +132,20 @@ elif option == 'Data Vaksin':
     # # from url in data
     # data_json = json.loads(response.read())
 
-    data_json = requests.get(url).json()
-    data = pd.DataFrame(data_json, index=[0])
-    # data.set_index('')
-    totalsasaran =data['totalsasaran'][0]
+    # data_json = requests.get(url).json()
+    data = pd.read_json(url, orient='index')
+    # data = pd.DataFrame(data_json.to_json(), index=[0])
+    
+    # data_json[0]['totalsasaran']
 
-    sasaranvaksinsdmk = data['sasaranvaksinsdmk'][0]
-    sasaranvaksinlansia= data['sasaranvaksinlansia'][0]
-    sasaranvaksinpetugaspublik= data['sasaranvaksinpetugaspublik'][0]
-    vaksinasi1= data['vaksinasi1'][0]
-    vaksinasi2= data['vaksinasi2'][0]
-    lastUpdate = data['lastUpdate'][0]
+    # data.set_index('')
+    totalsasaran = data[0]['totalsasaran']
+    sasaranvaksinsdmk = data[0]['sasaranvaksinsdmk']
+    sasaranvaksinlansia= data[0]['sasaranvaksinlansia']
+    sasaranvaksinpetugaspublik= data[0]['sasaranvaksinpetugaspublik']
+    vaksinasi1= data[0]['vaksinasi1']
+    vaksinasi2= data[0]['vaksinasi2']
+    lastUpdate = data[0]['lastUpdate']
     # df
     class NpEncoder(json.JSONEncoder):
 
