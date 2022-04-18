@@ -242,7 +242,7 @@ elif option == 'Persebaran Covid':
     try:
         # df = get_UN_data()
         countries = st.multiselect(
-            "Choose countries", list(df.index)
+            "Pilih Provinsi", list(df.index)
         )
         if not countries:
             st.pydeck_chart(pdk.Deck(
@@ -268,7 +268,7 @@ elif option == 'Persebaran Covid':
             
             data1 = df.loc[countries]
             data = data1[["dirawat", "sembuh", "meninggal"]]
-            st.write("### Tabel Persebaran Covid per Provinsi", data.sort_index())
+            st.write("### Tabel Persebaran Covid-19 per Provinsi", data.sort_index())
 
             # data = data.T.reset_index()
             # data = pd.melt(data, id_vars=["index"]).rename(
@@ -319,7 +319,7 @@ elif option == 'Data Rumah Sakit':
             return dataprov.loc[option]['name']
 
         provinsis = st.selectbox(
-            "Choose countries", options=list(dataprov.index), format_func=format_func
+            "Pilih Provinsi", options=list(dataprov.index), format_func=format_func
         )
 
         prov = dataprov.loc[provinsis]['id']
@@ -333,7 +333,7 @@ elif option == 'Data Rumah Sakit':
             return datakabkot.loc[option]['name']
 
         kabkotas = st.selectbox(
-            "Choose cities", options=list(datakabkot.index), format_func=format_func2
+            "Pilih Kota/Kabupaten", options=list(datakabkot.index), format_func=format_func2
         )
 
         kabkot = datakabkot.loc[kabkotas]['id']
@@ -344,7 +344,7 @@ elif option == 'Data Rumah Sakit':
         def format_func3(option):
             return CHOICES[option]
 
-        option = st.selectbox("Select option", options=list(CHOICES.keys()), format_func=format_func3)
+        option = st.selectbox("Pilih Jenis Rumah Sakit", options=list(CHOICES.keys()), format_func=format_func3)
 
         dfrs = pd.read_json(
             'https://rs-bed-covid-api.vercel.app/api/get-hospitals?provinceid='+str(prov)+'&cityid='+str(kabkot)+'&type='+str(option))
@@ -357,7 +357,7 @@ elif option == 'Data Rumah Sakit':
                 return datars.loc[option]['name']
 
             rses = st.selectbox(
-                "Choose hospitals", options=list(datars.index), format_func=format_func4
+                "Pilih Rumah Sakit", options=list(datars.index), format_func=format_func4
                 )
             
             rs = datars.loc[rses]['id']
